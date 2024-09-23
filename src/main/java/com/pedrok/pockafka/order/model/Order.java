@@ -1,4 +1,4 @@
-package com.pedrok.pockafka.order;
+package com.pedrok.pockafka.order.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

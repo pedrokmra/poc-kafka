@@ -1,4 +1,4 @@
-package com.pedrok.pockafka.notification;
+package com.pedrok.pockafka.notification.model;
 
 import lombok.Builder;
 

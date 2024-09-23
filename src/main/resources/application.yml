@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: poc-kafka
+  kafka:
+    group: poc-kafka-group
+    topic:
+      order: order-topic
+    bootstrap-servers: 127.0.0.1:9092
