@@ -1,7 +1,6 @@
 package com.pedrok.pockafka.order.producer;
 
 import com.pedrok.pockafka.order.model.Order;
-import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

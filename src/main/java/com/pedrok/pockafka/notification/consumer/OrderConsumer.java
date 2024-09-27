@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class OrderConsumer {
     private final ObjectMapper objectMapper;
 
-    @KafkaListener(topics = "${spring.kafka.topic.order}", groupId = "${spring.kafka.group}")
+    @KafkaListener(topics = "${spring.kafka.topic.order}", groupId = "${spring.kafka.group}", containerFactory = "dltKafkaListenerContainerFactory")
     public void consume(ConsumerRecord<String, String> record, Acknowledgment acknowledgment) {
         try {
             log.info("Consumed message: key = {}, value = {}", record.key(), record.value());
@@ -27,6 +27,18 @@ public class OrderConsumer {
             acknowledgment.acknowledge();
         } catch (Exception exception) {
             log.error("Error processing message: {}", record.value(), exception);
+            throw new RuntimeException(exception);
+        }
+    }
+
+    @KafkaListener(topics = "${spring.kafka.topic.order-dlt}", groupId = "${spring.kafka.group}")
+    public void consumeDLT(ConsumerRecord<String, String> record, Acknowledgment acknowledgment) {
+        try {
+            log.info("[DLT] Consumed message: key = {}, value = {}", record.key(), record.value());
+            // TODO persist message on database
+            acknowledgment.acknowledge();
+        } catch (Exception exception) {
+            log.error("[DLT] Error processing message: {}", record.value(), exception);
             throw new RuntimeException(exception);
         }
     }

@@ -5,4 +5,5 @@ spring:
     group: poc-kafka-group
     topic:
       order: order-topic
+      order-dlt: order-topic.DLT
     bootstrap-servers: 127.0.0.1:9092
